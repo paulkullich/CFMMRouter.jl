@@ -51,7 +51,7 @@ where `c` is a positive price vector.
 struct LinearNonnegative{T} <: Objective
     c::AbstractVector{T}
     function LinearNonnegative(c::Vector{T}) where {T<:AbstractFloat}
-        all(c .> 0) || throw(ArgumentError("all elements must be strictly positive"))
+        all(c .>= 0) || throw(ArgumentError("all elements must be strictly positive"))
         return new{T}(
             c,
         )
